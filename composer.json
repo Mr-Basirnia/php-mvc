@@ -1,0 +1,21 @@
+{
+  "name": "mr-basirnia/php-mvc",
+  "description": "micro framework",
+  "type": "framework",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ммđ αмıи ᴾᴴᴾ",
+      "email": "51942680+Mr-Basirnia@users.noreply.github.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/"
+    }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.5"
+  }
+}
