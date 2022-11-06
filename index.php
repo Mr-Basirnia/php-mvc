@@ -1,4 +1,7 @@
 <?php
 
-// get REQUEST_URI
-echo $_SERVER['REQUEST_URI'];
+// framework initiation file
+require 'bootstrap/bootstrap.php';
+
+
+var_dump($_ENV);
