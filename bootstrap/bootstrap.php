@@ -9,3 +9,7 @@ require BASEPATH . '/vendor/autoload.php';
 // use dotenv package
 $dotenv = Dotenv\Dotenv::createImmutable(BASEPATH);
 $dotenv->load();
+
+
+// helpers
+include BASEPATH . '/helpers/helpers.php';
