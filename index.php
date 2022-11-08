@@ -1,7 +1,11 @@
 <?php
 
+use App\Core\StupidRouter;
+
+
 // framework initiation file
 require 'bootstrap/bootstrap.php';
 
 
-var_dump($_ENV);
+$router = new StupidRouter();
+$router->run();
