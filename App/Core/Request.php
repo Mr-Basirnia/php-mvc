@@ -45,7 +45,7 @@ class Request
      */
     public function get_method(): string
     {
-        return $this->method;
+        return strtolower($this->method);
     }
 
     /**
@@ -88,5 +88,15 @@ class Request
     public function isset(string $key): bool
     {
         return isset($this->params[$key]);
+    }
+
+    /**
+     * get request uri without query params.
+     *
+     * @return string
+     */
+    public function get_uri(): string
+    {
+        return strtok($_SERVER['REQUEST_URI'], '?');
     }
 }
