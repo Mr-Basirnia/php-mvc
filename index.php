@@ -1,15 +1,11 @@
 <?php
 
-use App\Core\Request;
+use App\Core\Routing\Router;
+
+
 
 // framework initiation file
 require 'bootstrap/bootstrap.php';
 
-
-//$router = new StupidRouter();
-//$router->run();
-
-$request = new Request();
-var_dump($request->get_ip(), $request->input('name'), $request->isset('name'));
-
-echo $request->age;
+$router = new Router($request);
+$router->run();
