@@ -1,9 +1,11 @@
 <?php
 
+use App\Core\Routing\Router;
+
+
+
 // framework initiation file
-
-use App\Core\Routing\Route;
-
 require 'bootstrap/bootstrap.php';
 
-var_dump(Route::routes());
+$router = new Router($request);
+$router->run();
