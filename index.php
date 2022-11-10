@@ -11,3 +11,5 @@ require 'bootstrap/bootstrap.php';
 
 $request = new Request();
 var_dump($request->get_ip(), $request->input('name'), $request->isset('name'));
+
+echo $request->age;

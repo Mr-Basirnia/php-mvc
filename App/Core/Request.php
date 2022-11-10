@@ -18,6 +18,17 @@ class Request
     }
 
     /**
+     * get param value.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function __get($name): mixed
+    {
+        return $this->params[$name] ?? null;
+    }
+
+    /**
      * get all params.
      *
      * @return array
