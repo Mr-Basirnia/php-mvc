@@ -2,7 +2,7 @@
 
 use App\Core\Routing\Route;
 
-Route::get('/home');
+Route::get('/', 'HomeController@index');
 
 
 Route::get('/book/add', function () {
