@@ -18,6 +18,8 @@ class Router
         $this->request = $request;
         $this->routes = Route::routes();
         $this->currentRoute = $this->findRoute($request);
+
+        $this->routeMiddlewares();
     }
 
     /**
@@ -138,6 +140,25 @@ class Router
     {
         header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
         view('errors.405');
+        die();
+    }
+
+    /**
+     * run route middlewares.
+     *
+     * @return void
+     */
+    private function routeMiddlewares(): void
+    {
+        $middlewares = $this->currentRoute['middleware'];
+
+        foreach ($middlewares as $middleware) {
+            if (class_exists($middleware)) {
+                $object = new $middleware;
+                $object->handle();
+            }
+        }
+
         die();
     }
 }
