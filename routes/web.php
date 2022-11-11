@@ -10,3 +10,6 @@ Route::get('/blog/book', ['BlogController', 'book']);
 Route::get('/book/add', function () {
     echo 'Hello World';
 });
+
+
+Route::get('/todo' , 'TodoController@index');
