@@ -26,6 +26,7 @@ class Router
      * get current route or null.
      *
      * @param Request $request
+     *
      * @return array|null
      */
     protected function findRoute(Request $request): array|null
@@ -150,7 +151,11 @@ class Router
      */
     private function routeMiddlewares(): void
     {
-        $middlewares = $this->currentRoute['middleware'];
+        $middlewares = $this->currentRoute['middleware'] ?? null;
+
+        if ($middlewares === null) {
+            return;
+        }
 
         foreach ($middlewares as $middleware) {
             if (class_exists($middleware)) {
