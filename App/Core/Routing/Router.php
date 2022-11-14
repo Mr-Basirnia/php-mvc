@@ -17,7 +17,7 @@ class Router
     {
         $this->request = $request;
         $this->routes = Route::routes();
-        $this->currentRoute = $this->findRoute($request);
+        $this->currentRoute = $this->findRoute();
 
         $this->routeMiddlewares();
     }
@@ -25,14 +25,12 @@ class Router
     /**
      * get current route or null.
      *
-     * @param Request $request
-     *
      * @return array|null
      */
-    protected function findRoute(Request $request): array|null
+    protected function findRoute(): array|null
     {
         foreach ($this->routes as $route) {
-            if ($request->get_uri() === $route['slug'])
+            if ($this->regexMatched($route))
                 return $route;
         }
 
@@ -162,5 +160,29 @@ class Router
                 $object->handle();
             }
         }
+    }
+
+    /**
+     *
+     *
+     * @param array $route
+     *
+     * @return bool
+     */
+    private function regexMatched(array $route): bool
+    {
+        global $request;
+
+        $pattern = '/^' . str_replace(['/', '{', '}'], ['\/', '(?<', '>[-%\w]+)'], $route['slug']) . '$/';
+
+        if (!preg_match($pattern, $this->request->get_uri(), $matches))
+            return false;
+
+        foreach ($matches as $key => $value) {
+            if (is_string($key))
+                $request->add_route_params($key, $value);
+        }
+
+        return true;
     }
 }
