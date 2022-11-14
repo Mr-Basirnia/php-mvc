@@ -153,9 +153,8 @@ class Router
     {
         $middlewares = $this->currentRoute['middleware'] ?? null;
 
-        if ($middlewares === null) {
+        if ($middlewares === null)
             return;
-        }
 
         foreach ($middlewares as $middleware) {
             if (class_exists($middleware)) {
@@ -163,7 +162,5 @@ class Router
                 $object->handle();
             }
         }
-
-        die();
     }
 }
