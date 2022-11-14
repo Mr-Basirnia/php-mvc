@@ -8,6 +8,7 @@ class Request
     private string $method;
     private mixed $agent;
     private mixed $ip;
+    private array $route_params = [];
 
     public function __construct()
     {
@@ -21,6 +22,7 @@ class Request
      * get param value.
      *
      * @param string $name
+     *
      * @return mixed
      */
     public function __get($name): mixed
@@ -72,6 +74,7 @@ class Request
      * get value from params.
      *
      * @param string $key
+     *
      * @return mixed
      */
     public function input(string $key): mixed
@@ -83,6 +86,7 @@ class Request
      * check key is exists in params.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function isset(string $key): bool
@@ -98,5 +102,30 @@ class Request
     public function get_uri(): string
     {
         return strtok($_SERVER['REQUEST_URI'], '?');
+    }
+
+    /**
+     *
+     *
+     * @param string $key
+     * @param string $value
+     *
+     * @return void
+     */
+    public function add_route_params(string $key, string $value): void
+    {
+        $this->route_params[$key] = $value;
+    }
+
+    /**
+     *
+     *
+     * @param string|int $key
+     *
+     * @return mixed|null
+     */
+    public function get_route_params(string|int $key): mixed
+    {
+        return $this->route_params[$key] ?? null;
     }
 }
