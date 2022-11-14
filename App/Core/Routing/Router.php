@@ -151,7 +151,7 @@ class Router
     {
         $middlewares = $this->currentRoute['middleware'] ?? null;
 
-        if ($middlewares === null)
+        if (empty($middlewares))
             return;
 
         foreach ($middlewares as $middleware) {
