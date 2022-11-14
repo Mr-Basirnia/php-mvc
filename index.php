@@ -11,7 +11,12 @@ global $request;
 //$router->run();
 
 $route_pattern = '/^\/post\/(?<slug>[-%\w]+)$/';
+$route = '/post/{slug}';
+$pattern = '/^' . str_replace(
+        ['/', '{', '}'],
+        ['\/', '(?<', '>[-%\w]+)'],
+        $route
+    ) . '$/';
 
-$url1 = '/post/test';
-
-var_dump(preg_match($route_pattern, $url1));
+echo($route_pattern . '<br>');
+echo($pattern . '<br>');
